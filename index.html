@@ -14,6 +14,7 @@
         const SUPABASE_URL = 'https://dpaltfyvquazwxcwylwm.supabase.co';
         const ANON_KEY = 'sb_publishable_h6RPugXK2sWtCOMeSR9qdA_AaeihNuj';
         const FUNCTION_NAME = 'lookup_members';
+        const payload = { info: input };
         
         async function testRpc() {
             const output = document.getElementById('output');
@@ -21,7 +22,7 @@
             
             try {
                 const supabase = window.supabase.createClient(SUPABASE_URL, ANON_KEY);
-                const { data, error } = await supabase.rpc(FUNCTION_NAME);
+                const { data, error } = await supabase.rpc(FUNCTION_NAME, payload);
                 
                 if (error) throw error;
                 
