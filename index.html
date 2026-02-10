@@ -175,9 +175,11 @@
         // === RPC 调用（把 lookup_members 改成你的函数名 if 不同） ===
         const { data, error } = await supabase.rpc('lookup_members', { info: input })
         if (error) throw error
-        const rows = normalizeRows(data)
-        renderTable(rows)
-        status.textContent = 'Loaded ' + (rows.length || 0)
+
+        // 直接打印原始返回值
+        document.getElementById('rawOutput').textContent = JSON.stringify(data, null, 2)
+
+        status.textContent = 'Loaded (raw output)'
       } catch (e) {
         console.error(e)
         status.textContent = ''
